@@ -5,6 +5,7 @@ import { MovieList } from '../interfaces/MovieList';
 import { filterResults } from '../services/filterResults';
 
 const SearchPage = ({ data, query }: { data: MovieList; query: string }) => {
+  console.log(data.results);
   return (
     <Layout>
       <div>

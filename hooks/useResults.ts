@@ -8,10 +8,10 @@ const useResults = (initialData: MovieList, api: string) => {
   const [hasMore, setHasMore] = useState(Boolean(initialData.total_pages > page));
 
   useEffect(() => {
-    setResults(initialData.results);
-    setPage(initialData.page);
-    setHasMore(Boolean(initialData.total_pages > page));
-  }, [initialData, page]);
+    if (api.includes('search')) {
+      setResults(initialData.results);
+    }
+  }, [initialData, api]);
 
   const fetchMoreResults = async () => {
     const response = await fetch(`/api/${api}${api.includes('?') ? '&' : '?'}page=${page + 1}`);

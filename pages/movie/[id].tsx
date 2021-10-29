@@ -7,6 +7,7 @@ import { VideoPlayer } from '../../components/VideoPlayer';
 import { Video } from '../../interfaces/Video';
 
 const MoviePage = ({ data, bgColor }: { data: Movie; bgColor: string }) => {
+  console.log(data);
   console.log(data.trailer);
   return (
     <Layout>
