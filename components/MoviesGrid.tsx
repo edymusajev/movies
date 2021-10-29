@@ -6,14 +6,14 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { MovieList } from '../interfaces/MovieList';
 import useResults from '../hooks/useResults';
 
+// ghost element -> <div className="lg:w-48 lg:h-72 opacity-100 hidden relative top-72"></div>;
+// hover effects -> hover:relative hover:shadow-2xl transform hover:scale-125 duration-150
+
 const MovieCard = ({ movie }: { movie: Movie }) => {
   return (
     <div className="lg:w-48 lg:h-72 group relative">
-      {/* ghost element */}
-      <div className="lg:w-48 lg:h-72 opacity-100 hidden relative top-72"></div>
-      {/* real element */}
       <Link href={`/movie/${movie.id}`} passHref>
-        <div className="hover:relative hover:shadow-2xl  z-10 transform hover:scale-125 duration-150 hover:cursor-pointer">
+        <div className="  z-10 hover:cursor-pointer">
           <div className="rounded-lg w-36 sm:w-44 lg:w-48 h-56 sm:h-64 lg:h-72 bg-gray-100">
             <Poster src={movie.poster_path} />
           </div>
