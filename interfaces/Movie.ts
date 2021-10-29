@@ -21,7 +21,10 @@
 export interface Movie {
   id: number;
   title: string;
-  poster_path?: string;
+  poster_path: string;
   backdrop_path: string;
   release_date: string;
+  trailer: string;
+  overview: string;
+  vote_average: number;
 }
