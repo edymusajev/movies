@@ -27,4 +27,19 @@ export interface Movie {
   trailer: string;
   overview: string;
   vote_average: number;
+  media_type: string;
 }
+
+export interface Show {
+  id: number;
+  name: string;
+  poster_path: string;
+  backdrop_path: string;
+  first_air_date: string;
+  overview: string;
+  vote_average: number;
+  media_type: string;
+}
+
+export type Content = Movie & Show;
+export interface ContentList extends Array<Content> {}
