@@ -6,6 +6,20 @@ import Poster from '../../components/Poster';
 import { VideoPlayer } from '../../components/VideoPlayer';
 import { Video } from '../../interfaces/Video';
 
+// COMPLETE THIS
+const Test = () => {
+  return (
+    <div>
+      <div>
+        <Image alt="" src={`url(https://image.tmdb.org/t/p/original${data.poster_path}`} />
+      </div>
+      <div>
+        <Image alt="" src={`url(https://image.tmdb.org/t/p/original${data.backdrop_path}`} />
+      </div>
+    </div>
+  );
+};
+
 const MoviePage = ({ data, bgColor }: { data: Movie; bgColor: string }) => {
   console.log(data);
   console.log(data.trailer);

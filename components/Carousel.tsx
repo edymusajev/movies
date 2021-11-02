@@ -12,7 +12,6 @@ const fetcher = (url: string) => fetch(url).then((r) => r.json());
 export interface Category {
   readonly api: string;
   readonly name: string;
-  type: string;
 }
 export interface Categories extends Array<Category> {}
 interface CategoryMenuTypes {
@@ -23,6 +22,8 @@ interface CategoryMenuTypes {
 interface CarouselTypes {
   title: string;
   categories: Categories;
+  background?: boolean;
+  videos?: boolean;
 }
 
 const CategoryMenu = ({ categories, activeCategory, setActiveCategory }: CategoryMenuTypes) => {
@@ -30,7 +31,7 @@ const CategoryMenu = ({ categories, activeCategory, setActiveCategory }: Categor
     return categories.map((category) => (
       <Popover.Button
         key={category.api}
-        className="w-full first:border-t border-blue-900 rounded-3xl "
+        className="w-full first:border-t border-blue-900 rounded-3xl"
       >
         <a
           className={`mb-1 last:mb-0 z-10 flex w-full ${
@@ -58,13 +59,13 @@ const CategoryMenu = ({ categories, activeCategory, setActiveCategory }: Categor
   );
 };
 
-export const Carousel = ({ title, categories }: CarouselTypes) => {
+export const Carousel = ({ title, categories, background }: CarouselTypes) => {
   const [activeCategory, setActiveCategory] = useState<Category>(categories[0]);
   const { data } = useSWR(`/api/${activeCategory.api}`, fetcher);
   const [content, setContent] = useState<ContentList | null>(null);
-
   useEffect(() => {
     if (data) {
+      console.log(data);
       setContent(data.results);
     }
   }, [data]);
@@ -72,9 +73,9 @@ export const Carousel = ({ title, categories }: CarouselTypes) => {
   const renderList = () => {
     if (content) {
       return content.map((item: Content) => (
-        <div key={item.id}>
+        <div key={item.id} className="relative first:pl-4 last:pr-4">
           <Link
-            href={activeCategory.type === 'movie' ? `/movie/${item.id}` : `/tv/${item.id}`}
+            href={item.media_type === 'movie' ? `/movie/${item.id}` : `/tv/${item.id}`}
             passHref
           >
             <div className="w-36 h-56 hover:cursor-pointer">
@@ -85,22 +86,36 @@ export const Carousel = ({ title, categories }: CarouselTypes) => {
           <h6 className="font-semibold hover:text-blue-300 hover:cursor-pointer my-2 inline-block">
             {item.title || item.name}
           </h6>
-          <p className="text-gray-700 text-sm">{item.release_date || item.first_air_date}</p>
+          <p className="text-sm opacity-75">{item.release_date || item.first_air_date}</p>
         </div>
       ));
     }
   };
   return (
-    <>
-      <div className="py-6 flex justify-between">
-        <h2 className="text-2xl mr-4">{title}</h2>
+    <div
+      className="bg-cover bg-center bg-no-repeat w-full relative mb-4"
+      style={
+        background && content
+          ? {
+              backgroundImage: `url(https://image.tmdb.org/t/p/original${content[0].backdrop_path}`,
+            }
+          : {}
+      }
+    >
+      {background && (
+        <div className="bg-blue-900 bg-opacity-50 w-full h-full absolute inset-0 "></div>
+      )}
+      <div className="py-6 flex justify-between relative z-10 container ">
+        <h2 className={`text-2xl mr-4 ${background ? 'text-white' : ''}`}>{title}</h2>
         <CategoryMenu
           categories={categories}
           activeCategory={activeCategory}
           setActiveCategory={setActiveCategory}
         />
       </div>
-      <div className="flex overflow-x-scroll space-x-4 h-full">{renderList()}</div>
-    </>
+      <div className={`flex overflow-x-auto space-x-4 h-full ${background ? 'text-white' : ''}`}>
+        {renderList()}
+      </div>
+    </div>
   );
 };

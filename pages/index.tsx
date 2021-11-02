@@ -14,7 +14,7 @@ import { filterResults } from '../services/filterResults';
 
 const Hero = ({ bgImage }: { bgImage?: string }) => {
   return (
-    <div className="bg-blue-800 -mx-4 sm:-mx-8 p-4 ">
+    <div className="bg-blue-800 p-4 ">
       <div className="text-white my-4">
         <h1 className="text-5xl font-bold">Welcome.</h1>
         <h2 className="text-3xl">
@@ -23,7 +23,7 @@ const Hero = ({ bgImage }: { bgImage?: string }) => {
         </h2>
         <form className="flex justify-between bg-white rounded-3xl mt-4">
           <input
-            className="rounded-3xl ml-4 focus:outline-none text-black"
+            className="rounded-3xl ml-4 focus:outline-none text-black w-full"
             placeholder="Search..."
           />
           <button className="bg-green-500  font-semibold py-3 px-6  rounded-3xl">Search</button>
@@ -35,14 +35,25 @@ const Hero = ({ bgImage }: { bgImage?: string }) => {
 
 const Home = () => {
   const popularCategories: Categories = [
-    { name: 'Streaming', api: 'discover?category=tv&monetization=flatrate', type: 'tv' },
-    { name: 'On TV', api: 'tv?category=popular&page=1', type: 'tv' },
-    { name: 'Movies', api: 'movies?category=now_playing&page=1', type: 'movie' },
-    { name: 'For Rent', api: 'discover?category=movie&monetization=rent', type: 'movie' },
+    { name: 'Streaming', api: 'discover?category=tv&monetization=flatrate' },
+    { name: 'On TV', api: 'tv?category=popular&page=1' },
+    { name: 'In Theatre', api: 'movies?category=now_playing&page=1' },
+    { name: 'For Rent', api: 'discover?category=movie&monetization=rent' },
   ];
   const freeCategories: Categories = [
-    { name: 'Movies', api: 'discover?category=movie&monetization=free', type: 'movie' },
-    { name: 'TV', api: 'discover?category=tv&monetization=free', type: 'tv' },
+    { name: 'Movies', api: 'discover?category=movie&monetization=free' },
+    { name: 'TV', api: 'discover?category=tv&monetization=free' },
+  ];
+  const trailerCategories: Categories = [
+    {
+      name: 'Streaming',
+      api: 'videos?category=tv&monetization=flatrate',
+    },
+    { name: 'TV', api: 'discover?category=tv&monetization=free' },
+  ];
+  const trendingCategories: Categories = [
+    { name: 'Today', api: 'trending?category=day' },
+    { name: 'This Week', api: 'trending?category=week' },
   ];
   return (
     <Layout>
@@ -55,6 +66,8 @@ const Home = () => {
       <div>
         <Carousel title="What's Popular" categories={popularCategories} />
         <Carousel title="Free to Watch" categories={freeCategories} />
+        <Carousel title="Latest Trailers" categories={trailerCategories} background videos />
+        <Carousel title="Trending" categories={trendingCategories} />
       </div>
       {/* <MoviesGrid data={data} api="movies" /> */}
     </Layout>
