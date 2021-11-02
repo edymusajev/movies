@@ -18,28 +18,50 @@
 //     "vote_count": 1106
 // }
 
-export interface Movie {
-  id: number;
-  title: string;
-  poster_path: string;
-  backdrop_path: string;
-  release_date: string;
-  trailer: string;
-  overview: string;
-  vote_average: number;
-  media_type: string;
-}
+// {
+//   "id": 1294471,
+//   "credit_id": "61235265886348007e36f84c",
+//   "name": "Hwang Dong-hyuk",
+//   "gender": 2,
+//   "profile_path": "/xyr3b04ayyJtA5ZN3L0Af10WKIR.jpg"
+// }
 
-export interface Show {
+export interface Genre {
   id: number;
   name: string;
-  poster_path: string;
-  backdrop_path: string;
-  first_air_date: string;
-  overview: string;
-  vote_average: number;
-  media_type: string;
+}
+export interface Creator {
+  id: number;
+  credit_id: string;
+  name: string;
+  gender: number;
+  profile_path: string;
 }
 
-export type Content = Movie & Show;
+interface Content {
+  id: number;
+  poster_path: string;
+  overview: string;
+  genres: Genre[];
+  backdrop_path: string;
+  vote_average: number;
+  media_type: string;
+  tagline: string;
+  created_by: Creator[];
+}
+
+export interface Movie extends Content {
+  title: string;
+  release_date: string;
+  trailer: string;
+  runtime: number;
+}
+
+export interface Series extends Content {
+  name: string;
+  first_air_date: string;
+  episode_run_time: number[];
+}
+
+// export type Content = Movie & Show;
 export interface ContentList extends Array<Content> {}

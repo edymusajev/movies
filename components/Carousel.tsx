@@ -74,10 +74,7 @@ export const Carousel = ({ title, categories, background }: CarouselTypes) => {
     if (content) {
       return content.map((item: Content) => (
         <div key={item.id} className="relative first:pl-4 last:pr-4">
-          <Link
-            href={item.media_type === 'movie' ? `/movie/${item.id}` : `/tv/${item.id}`}
-            passHref
-          >
+          <Link href={item.title ? `/movie/${item.id}` : `/tv/${item.id}`} passHref>
             <div className="w-36 h-56 hover:cursor-pointer">
               <Poster src={item.poster_path} />
             </div>

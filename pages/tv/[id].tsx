@@ -1,17 +1,18 @@
 import { GetServerSideProps } from 'next';
 import { Layout } from '../../components/Layout';
-import { Movie } from '../../interfaces/Movie';
+import { Movie, Series } from '../../interfaces/Movie';
 import Image from 'next/image';
 import Poster from '../../components/Poster';
 import { VideoPlayer } from '../../components/VideoPlayer';
 import { Video } from '../../interfaces/Video';
+import { Content as ContentPage } from '../../components/content/Content';
 
-const TvPage = ({ data, bgColor }: { data: Movie; bgColor: string }) => {
+const TvPage = ({ data, bgColor }: { data: Series; bgColor: string }) => {
   console.log(data);
-  console.log(data.trailer);
   return (
     <Layout>
-      <div
+      <ContentPage series={data} />
+      {/* <div
         className="w-full bg-center bg-no-repeat bg-cover bg-gray-100 mb-72"
         style={
           data.backdrop_path
@@ -29,12 +30,12 @@ const TvPage = ({ data, bgColor }: { data: Movie; bgColor: string }) => {
         </div>
       </div>
 
-      {/* <p>{data.vote_average}</p> */}
+      <p>{data.vote_average}</p>
 
       <h3 className="text-2xl mb-2">Overview</h3>
       <p className="mb-8">{data.overview}</p>
       <h3 className="text-2xl mb-2">Trailer</h3>
-      {data.trailer && <VideoPlayer video={data.trailer} />}
+      {data.trailer && <VideoPlayer video={data.trailer} />} */}
     </Layout>
   );
 };

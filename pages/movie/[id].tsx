@@ -5,27 +5,15 @@ import Image from 'next/image';
 import Poster from '../../components/Poster';
 import { VideoPlayer } from '../../components/VideoPlayer';
 import { Video } from '../../interfaces/Video';
-
-// COMPLETE THIS
-const Test = () => {
-  return (
-    <div>
-      <div>
-        <Image alt="" src={`url(https://image.tmdb.org/t/p/original${data.poster_path}`} />
-      </div>
-      <div>
-        <Image alt="" src={`url(https://image.tmdb.org/t/p/original${data.backdrop_path}`} />
-      </div>
-    </div>
-  );
-};
+import { Content } from '../../components/content/Content';
 
 const MoviePage = ({ data, bgColor }: { data: Movie; bgColor: string }) => {
   console.log(data);
   console.log(data.trailer);
   return (
     <Layout>
-      <div
+      <Content movie={data} />
+      {/* <div
         className="w-full bg-center bg-no-repeat bg-cover bg-gray-100 mb-72"
         style={
           data.backdrop_path
@@ -44,11 +32,6 @@ const MoviePage = ({ data, bgColor }: { data: Movie; bgColor: string }) => {
       </div>
 
       {/* <p>{data.vote_average}</p> */}
-
-      <h3 className="text-2xl mb-2">Overview</h3>
-      <p className="mb-8">{data.overview}</p>
-      <h3 className="text-2xl mb-2">Trailer</h3>
-      {data.trailer && <VideoPlayer video={data.trailer} />}
     </Layout>
   );
 };
@@ -58,19 +41,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.MOVIES_API}&language=en-US`
   ).then((response) => response.json());
 
-  const videos = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.MOVIES_API}&language=en-US`
-  ).then(
-    (response) => response.json(),
-    (error) => console.log(error)
-  );
-  const trailer = videos.results.find((video: Video) => video.site === 'YouTube');
+  // const videos = await fetch(
+  //   `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.MOVIES_API}&language=en-US`
+  // ).then(
+  //   (response) => response.json(),
+  //   (error) => console.log(error)
+  // );
 
   return {
     props: {
       data: {
         ...data,
-        trailer: trailer ? trailer : null,
+        // trailer: trailer ? trailer : null,
       },
     },
   };
