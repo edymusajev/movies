@@ -1,4 +1,5 @@
 import { Movie, Series } from '../../interfaces/Movie';
+import { CastList } from './CastList';
 import { Description } from './Description';
 import { Header } from './Header';
 
@@ -8,9 +9,10 @@ interface ContentProps {
 }
 
 export const Content = ({ movie, series }: ContentProps) => {
-  // If the data is a series it contains the name property
+  let description;
+
   if (series) {
-    return (
+    description = (
       <div>
         <Header background={series.backdrop_path} poster={series.poster_path} />
         <Description
@@ -23,10 +25,11 @@ export const Content = ({ movie, series }: ContentProps) => {
           overview={series.overview}
           created_by={series.created_by}
         />
+        <CastList cast={series.credits.cast} series />
       </div>
     );
   } else if (movie) {
-    return (
+    description = (
       <div>
         <Header background={movie.backdrop_path} poster={movie.poster_path} />
         <Description
@@ -39,11 +42,12 @@ export const Content = ({ movie, series }: ContentProps) => {
           overview={movie.overview}
           created_by={movie.created_by}
         />
+        <CastList cast={movie.credits.cast} />
       </div>
     );
-  } else {
-    return <div>No Data</div>;
   }
+
+  return <div className="">{description}</div>;
   //   return (
   //     <div>
   //       <Header background={data.backdrop_path} poster={data.poster_path} />

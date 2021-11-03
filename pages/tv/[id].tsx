@@ -5,13 +5,13 @@ import Image from 'next/image';
 import Poster from '../../components/Poster';
 import { VideoPlayer } from '../../components/VideoPlayer';
 import { Video } from '../../interfaces/Video';
-import { Content as ContentPage } from '../../components/content/Content';
+import { Content } from '../../components/content/Content';
 
 const TvPage = ({ data, bgColor }: { data: Series; bgColor: string }) => {
   console.log(data);
   return (
     <Layout>
-      <ContentPage series={data} />
+      <Content series={data} />
       {/* <div
         className="w-full bg-center bg-no-repeat bg-cover bg-gray-100 mb-72"
         style={
@@ -45,6 +45,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.MOVIES_API}&language=en-US`
   ).then((response) => response.json());
 
+  const credits = await fetch(`
+  https://api.themoviedb.org/3/tv/${id}/credits?api_key=${process.env.MOVIES_API}&language=en-US
+  `).then((response) => response.json());
+
   const videos = await fetch(
     `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.MOVIES_API}&language=en-US`
   ).then(
@@ -57,6 +61,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       data: {
         ...data,
+        credits,
         trailer: trailer ? trailer : null,
       },
     },

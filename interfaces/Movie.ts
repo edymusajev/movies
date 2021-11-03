@@ -1,31 +1,3 @@
-// {
-//     "adult": false,
-//     "backdrop_path": "/lNyLSOKMMeUPr1RsL4KcRuIXwHt.jpg",
-//     "genre_ids": [
-//         878,
-//         28
-//     ],
-//     "id": 580489,
-//     "original_language": "en",
-//     "original_title": "Venom: Let There Be Carnage",
-//     "overview": "After finding a host body in investigative reporter Eddie Brock, the alien symbiote must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady.",
-//     "popularity": 7933.523,
-//     "poster_path": "/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg",
-//     "release_date": "2021-09-30",
-//     "title": "Venom: Let There Be Carnage",
-//     "video": false,
-//     "vote_average": 7,
-//     "vote_count": 1106
-// }
-
-// {
-//   "id": 1294471,
-//   "credit_id": "61235265886348007e36f84c",
-//   "name": "Hwang Dong-hyuk",
-//   "gender": 2,
-//   "profile_path": "/xyr3b04ayyJtA5ZN3L0Af10WKIR.jpg"
-// }
-
 export interface Genre {
   id: number;
   name: string;
@@ -38,6 +10,26 @@ export interface Creator {
   profile_path: string;
 }
 
+export interface Cast {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+  character: string;
+  credit_id: string;
+  order: number;
+}
+export interface Crew extends Cast {}
+
+export interface Credits {
+  cast: Cast[];
+  crew: Crew[];
+}
+
 interface Content {
   id: number;
   poster_path: string;
@@ -48,6 +40,7 @@ interface Content {
   media_type: string;
   tagline: string;
   created_by: Creator[];
+  credits: Credits;
 }
 
 export interface Movie extends Content {

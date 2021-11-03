@@ -7,7 +7,7 @@ import { VideoPlayer } from '../../components/VideoPlayer';
 import { Video } from '../../interfaces/Video';
 import { Content } from '../../components/content/Content';
 
-const MoviePage = ({ data, bgColor }: { data: Movie; bgColor: string }) => {
+const MoviePage = ({ data }: { data: Movie }) => {
   console.log(data);
   console.log(data.trailer);
   return (
@@ -41,6 +41,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.MOVIES_API}&language=en-US`
   ).then((response) => response.json());
 
+  const credits = await fetch(`
+  https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.MOVIES_API}&language=en-US
+  `).then((response) => response.json());
+
   // const videos = await fetch(
   //   `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.MOVIES_API}&language=en-US`
   // ).then(
@@ -52,6 +56,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       data: {
         ...data,
+        credits,
         // trailer: trailer ? trailer : null,
       },
     },

@@ -12,7 +12,7 @@ const Poster = ({ src }: { src: string }) => {
           className="object-cover rounded-lg"
         />
       ) : (
-        <span className="text-gray-300">
+        <span className="text-gray-300 bg-gray-50 w-full h-full flex justify-center items-center rounded">
           <BsFillImageFill size="5rem" />
         </span>
       )}

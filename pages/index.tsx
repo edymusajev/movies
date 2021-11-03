@@ -12,6 +12,28 @@ import { Movie } from '../interfaces/Movie';
 import { MovieList } from '../interfaces/MovieList';
 import { filterResults } from '../services/filterResults';
 
+const popularCategories: Categories = [
+  { name: 'Streaming', api: 'discover?category=tv&monetization=flatrate' },
+  { name: 'On TV', api: 'tv?category=popular&page=1' },
+  { name: 'In Theatre', api: 'movies?category=now_playing&page=1' },
+  { name: 'For Rent', api: 'discover?category=movie&monetization=rent' },
+];
+const freeCategories: Categories = [
+  { name: 'Movies', api: 'discover?category=movie&monetization=free' },
+  { name: 'TV', api: 'discover?category=tv&monetization=free' },
+];
+const trailerCategories: Categories = [
+  {
+    name: 'Streaming',
+    api: 'videos',
+  },
+  { name: 'TV', api: 'discover?category=tv&monetization=free' },
+];
+const trendingCategories: Categories = [
+  { name: 'Today', api: 'trending?category=day' },
+  { name: 'This Week', api: 'trending?category=week' },
+];
+
 const Hero = ({ bgImage }: { bgImage?: string }) => {
   return (
     <div className="bg-blue-800 p-4 ">
@@ -34,27 +56,6 @@ const Hero = ({ bgImage }: { bgImage?: string }) => {
 };
 
 const Home = () => {
-  const popularCategories: Categories = [
-    { name: 'Streaming', api: 'discover?category=tv&monetization=flatrate' },
-    { name: 'On TV', api: 'tv?category=popular&page=1' },
-    { name: 'In Theatre', api: 'movies?category=now_playing&page=1' },
-    { name: 'For Rent', api: 'discover?category=movie&monetization=rent' },
-  ];
-  const freeCategories: Categories = [
-    { name: 'Movies', api: 'discover?category=movie&monetization=free' },
-    { name: 'TV', api: 'discover?category=tv&monetization=free' },
-  ];
-  const trailerCategories: Categories = [
-    {
-      name: 'Streaming',
-      api: 'videos?category=tv&monetization=flatrate',
-    },
-    { name: 'TV', api: 'discover?category=tv&monetization=free' },
-  ];
-  const trendingCategories: Categories = [
-    { name: 'Today', api: 'trending?category=day' },
-    { name: 'This Week', api: 'trending?category=week' },
-  ];
   return (
     <Layout>
       <Head>
@@ -66,7 +67,8 @@ const Home = () => {
       <div>
         <Carousel title="What's Popular" categories={popularCategories} />
         <Carousel title="Free to Watch" categories={freeCategories} />
-        <Carousel title="Latest Trailers" categories={trailerCategories} background videos />
+        {/* TRAilers API endpoint not available yet */}
+        {/* <Carousel title="Latest Trailers" categories={trailerCategories} background videos /> */}
         <Carousel title="Trending" categories={trendingCategories} />
       </div>
       {/* <MoviesGrid data={data} api="movies" /> */}
