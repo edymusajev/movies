@@ -6,8 +6,7 @@ import { useState } from 'react';
 import { HiOutlineChevronDown } from 'react-icons/hi';
 import Link from 'next/link';
 import useSWR from 'swr';
-
-const fetcher = (url: string) => fetch(url).then((r) => r.json());
+import { fetcher } from '../services/SWRFetcher';
 
 export interface Category {
   readonly api: string;

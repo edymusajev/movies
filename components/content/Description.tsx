@@ -1,8 +1,11 @@
-import { HiPlay } from 'react-icons/hi';
 import { Creator, Genre } from '../../interfaces/Movie';
-import Link from 'next/link';
+
+import { UserScore } from '../UserScore';
+
+import { VideoPlayer } from '../VideoPlayer';
 
 interface DescriptionProps {
+  id: number;
   title: string;
   release_date: string;
   user_score: number;
@@ -11,17 +14,11 @@ interface DescriptionProps {
   tagline: string;
   overview: string;
   created_by: Creator[];
+  type: 'movie' | 'tv';
 }
 
-const UserScore = ({ score }: { score: number }) => {
-  return (
-    <div>
-      <div className="rounded-full p-2 bg-gray-900 text-white">{score * 10}%</div>
-    </div>
-  );
-};
-
 export const Description = ({
+  id,
   title,
   release_date,
   user_score,
@@ -30,6 +27,7 @@ export const Description = ({
   tagline,
   overview,
   created_by,
+  type,
 }: DescriptionProps) => {
   const renderGenres = () => {
     return genres.map((genre, index) => (
@@ -52,14 +50,13 @@ export const Description = ({
         </h1>
       </div>
 
-      <div className="flex items-center justify-between container divide-x mb-8 px-16">
-        <div className=" flex-1 flex items-center">
+      <div className="flex items-center justify-between container divide-x mb-8 px-4">
+        <div className=" flex-1 flex items-center justify-center w-full">
           <UserScore score={user_score} />
           <span className="ml-2 font-semibold">User Score</span>
         </div>
-        <div className="flex-1 flex items-center justify-end">
-          <HiPlay size="1.25rem" className="mr-1" />
-          Play Trailer
+        <div className="flex-1 flex items-center justify-center w-full">
+          <VideoPlayer id={id} type={type} />
         </div>
       </div>
 

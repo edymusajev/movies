@@ -1,16 +1,7 @@
-import { Tab } from '@headlessui/react';
-import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import { Carousel, Categories } from '../components/Carousel';
 import { Layout } from '../components/Layout';
-import { MoviesGrid } from '../components/MoviesGrid';
-import useResults from '../hooks/useResults';
-import { Movie } from '../interfaces/Movie';
-import { MovieList } from '../interfaces/MovieList';
-import { filterResults } from '../services/filterResults';
+import { SearchInput } from '../components/SearchInput';
 
 const popularCategories: Categories = [
   { name: 'Streaming', api: 'discover?category=tv&monetization=flatrate' },
@@ -44,10 +35,7 @@ const Hero = ({ bgImage }: { bgImage?: string }) => {
           <br /> shows and people to discover. Explore now.
         </h2>
         <form className="flex justify-between bg-white rounded-3xl mt-4">
-          <input
-            className="rounded-3xl ml-4 focus:outline-none text-black w-full"
-            placeholder="Search..."
-          />
+          <SearchInput />
           <button className="bg-green-500  font-semibold py-3 px-6  rounded-3xl">Search</button>
         </form>
       </div>

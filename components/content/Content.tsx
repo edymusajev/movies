@@ -16,6 +16,8 @@ export const Content = ({ movie, series }: ContentProps) => {
       <div>
         <Header background={series.backdrop_path} poster={series.poster_path} />
         <Description
+          type={series.type}
+          id={series.id}
           title={series.name}
           release_date={series.first_air_date}
           user_score={series.vote_average}
@@ -33,6 +35,8 @@ export const Content = ({ movie, series }: ContentProps) => {
       <div>
         <Header background={movie.backdrop_path} poster={movie.poster_path} />
         <Description
+          type={movie.type}
+          id={movie.id}
           title={movie.title}
           release_date={movie.release_date}
           user_score={movie.vote_average}
