@@ -65,7 +65,7 @@ export interface Movie extends Content {
 }
 
 export interface Series extends Content {
-  type: 'series';
+  type: 'tv';
   name: string;
   first_air_date: string;
   episode_run_time: number[];

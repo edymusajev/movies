@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { Carousel, Categories } from '../components/Carousel';
 import { Layout } from '../components/Layout';
 import SearchBar from '../components/SearchBar';
-import { SearchInput } from '../components/SearchInput';
 
 const popularCategories: Categories = [
   { name: 'Streaming', api: 'discover?category=tv&monetization=flatrate' },

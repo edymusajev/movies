@@ -50,14 +50,12 @@ export const Description = ({
         </h1>
       </div>
 
-      <div className="flex items-center justify-between container divide-x mb-8 px-4">
+      <div className="flex items-center justify-center container divide-x mb-8 px-4">
         <div className=" flex-1 flex items-center justify-center w-full">
           <UserScore score={user_score} />
           <span className="ml-2 font-semibold">User Score</span>
         </div>
-        <div className="flex-1 flex items-center justify-center w-full">
-          <VideoPlayer id={id} type={type} />
-        </div>
+        <VideoPlayer id={id} type={type} />
       </div>
 
       <div className="border-t border-b flex flex-col justify-center items-center py-4">

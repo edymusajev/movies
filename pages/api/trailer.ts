@@ -6,6 +6,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const data = await fetch(
     `https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${process.env.MOVIES_API}&language=en-US`
   ).then((res) => res.json());
+  console.log(data);
   const trailer = data.results.find(
     (item: Trailer) => item.site === 'YouTube' && item.type === 'Trailer'
   );

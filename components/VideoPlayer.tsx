@@ -18,7 +18,7 @@ export const VideoPlayer = ({ id, type }: VideoPlayerProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
+    <div className={`${data ? 'flex-1 flex items-center justify-center w-full' : 'hidden'}`}>
       <span onClick={() => setIsOpen(true)} className="flex items-center hover:cursor-pointer">
         <HiPlay size="1.5rem" className="mr-1" />
         Play Trailer
@@ -42,6 +42,6 @@ export const VideoPlayer = ({ id, type }: VideoPlayerProps) => {
           </div>
         </div>
       </Dialog>
-    </>
+    </div>
   );
 };
