@@ -1,7 +1,23 @@
 import { useRouter } from 'next/dist/client/router';
 import React, { useState } from 'react';
 
-export const SearchBar = () => {
+interface SearchBarProps {
+  formStyle?: string;
+  inputStyle?: string;
+  buttonStyle?: string;
+  button?: boolean;
+  buttonText?: string;
+  placeholder?: string;
+}
+
+export const SearchBar = ({
+  formStyle,
+  inputStyle,
+  buttonStyle,
+  button,
+  buttonText,
+  placeholder,
+}: SearchBarProps) => {
   const [input, setInput] = useState('');
   const router = useRouter();
   const handleSubmit = (e: React.SyntheticEvent) => {
@@ -9,12 +25,14 @@ export const SearchBar = () => {
     router.push(`/search?query=${input}`, undefined, { shallow: false });
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={formStyle} onSubmit={handleSubmit}>
       <input
-        className="border rounded outline-none px-3 py-2 w-full"
+        placeholder={placeholder}
+        className={inputStyle}
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
+      {button && <button className={buttonStyle}>{buttonText ? buttonText : 'Search'}</button>}
     </form>
   );
 };

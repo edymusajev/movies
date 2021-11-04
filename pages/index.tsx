@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { Carousel, Categories } from '../components/Carousel';
 import { Layout } from '../components/Layout';
+import SearchBar from '../components/SearchBar';
 import { SearchInput } from '../components/SearchInput';
 
 const popularCategories: Categories = [
@@ -34,10 +35,13 @@ const Hero = ({ bgImage }: { bgImage?: string }) => {
           Millions of movies, TV
           <br /> shows and people to discover. Explore now.
         </h2>
-        <form className="flex justify-between bg-white rounded-3xl mt-4">
-          <SearchInput />
-          <button className="bg-green-500  font-semibold py-3 px-6  rounded-3xl">Search</button>
-        </form>
+        <SearchBar
+          formStyle="flex justify-between bg-white rounded-3xl mt-4"
+          inputStyle="w-full text-black px-4 rounded-3xl outline-none"
+          placeholder="Search..."
+          button
+          buttonStyle="bg-green-500  font-semibold py-3 px-6  rounded-3xl"
+        />
       </div>
     </div>
   );
@@ -55,7 +59,7 @@ const Home = () => {
       <div>
         <Carousel title="What's Popular" categories={popularCategories} />
         <Carousel title="Free to Watch" categories={freeCategories} />
-        {/* TRAilers API endpoint not available yet */}
+        {/* Trailers API endpoint not available yet */}
         {/* <Carousel title="Latest Trailers" categories={trailerCategories} background videos /> */}
         <Carousel title="Trending" categories={trendingCategories} />
       </div>
