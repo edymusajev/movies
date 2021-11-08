@@ -1,6 +1,7 @@
 import { Cast } from '../../interfaces/Movie';
 import Image from 'next/image';
 import Poster from '../Poster';
+import { Heading } from '../Heading';
 
 interface CastListProps {
   cast: Cast[];
@@ -30,9 +31,11 @@ export const CastList = ({ cast, series }: CastListProps) => {
     return cast.map((person) => <CastCard key={person.id} person={person} />);
   };
   return (
-    <div className="mb-4">
-      <h2 className="container font-semibold">{series ? 'Series' : 'Movies'} Cast</h2>
-      <div className="flex overflow-x-scroll w-full space-x-4 py-4">{renderList()}</div>
-    </div>
+    <>
+      <div className="container">
+        <Heading>{series ? 'Series' : 'Movies'} Cast</Heading>
+      </div>
+      <div className="flex overflow-x-scroll w-full space-x-4 pb-4">{renderList()}</div>
+    </>
   );
 };

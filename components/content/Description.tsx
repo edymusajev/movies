@@ -1,4 +1,5 @@
 import { Creator, Genre } from '../../interfaces/Movie';
+import { Heading } from '../Heading';
 
 import { UserScore } from '../UserScore';
 
@@ -43,12 +44,12 @@ export const Description = ({
   };
   return (
     <div>
-      <div className="flex justify-center py-4">
-        <h1 className="text-2xl ">
-          <span className="font-semibold">{title}</span>
-          <span className="text-xl ml-1 opacity-75">({release_date.substr(0, 4)})</span>
-        </h1>
-      </div>
+      {/* <div className="flex justify-center py-4"></div> */}
+
+      <Heading align={Heading.align.CENTER} size={Heading.size.LARGE}>
+        {title}
+        {/* <span className="text-xl ml-1 opacity-75">({release_date.substr(0, 4)})</span> */}
+      </Heading>
 
       <div className="flex items-center justify-center container divide-x mb-8 px-4">
         <div className=" flex-1 flex items-center justify-center w-full">
@@ -69,9 +70,10 @@ export const Description = ({
         </div>
       </div>
 
-      <div className="container py-4">
+      <div className="container p-4">
         <p className="italic opacity-75 mb-4 ">{tagline}</p>
-        <h2 className="text-xl mb-2">Overview</h2>
+        <Heading>Overview</Heading>
+        {/* <h2 className="text-xl mb-2">Overview</h2> */}
         <p className="mb-4">{overview}</p>
         {created_by && (
           <>
