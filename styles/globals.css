@@ -3,11 +3,14 @@
 @tailwind utilities;
 
 @layer components {
-  .btn-category-active {
-    @apply bg-blue-900 text-white px-4 py-2 rounded-3xl flex items-center justify-between w-36 relative outline-none;
-  }
   .container {
     @apply px-4 md:px-8 mx-auto;
+  }
+  .button {
+    @apply px-3 py-2 rounded-md font-medium;
+  }
+  .button-primary {
+    @apply bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white;
   }
 }
 

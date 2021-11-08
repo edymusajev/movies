@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { Carousel, Categories } from '../components/Carousel';
+import { Heading } from '../components/Heading';
 import { Layout } from '../components/Layout';
 import SearchBar from '../components/SearchBar';
 
@@ -28,12 +29,12 @@ const trendingCategories: Categories = [
 const Hero = ({ bgImage }: { bgImage?: string }) => {
   return (
     <div className="bg-blue-800 p-4 ">
-      <div className="text-white my-4">
-        <h1 className="text-5xl font-bold">Welcome.</h1>
-        <h2 className="text-3xl">
+      <div className="text-white">
+        <Heading size={Heading.size.EXTRA_LARGE}>Welcome.</Heading>
+        <Heading size={Heading.size.LARGE}>
           Millions of movies, TV
           <br /> shows and people to discover. Explore now.
-        </h2>
+        </Heading>
         <SearchBar
           formStyle="flex justify-between bg-white rounded-3xl mt-4"
           inputStyle="w-full text-black px-4 rounded-3xl outline-none"
@@ -55,12 +56,12 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Hero />
-      <div>
+      <div className="py-8">
         <Carousel title="What's Popular" categories={popularCategories} />
         <Carousel title="Free to Watch" categories={freeCategories} />
+        <Carousel title="Trending" categories={trendingCategories} />
         {/* Trailers API endpoint not available yet */}
         {/* <Carousel title="Latest Trailers" categories={trailerCategories} background videos /> */}
-        <Carousel title="Trending" categories={trendingCategories} />
       </div>
       {/* <MoviesGrid data={data} api="movies" /> */}
     </Layout>
