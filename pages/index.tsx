@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Carousel, Categories } from '../components/Carousel';
+import { Carousel, Categories } from '../components/Carousel/Carousel';
 import { Heading } from '../components/Heading';
 import { Layout } from '../components/Layout';
 import SearchBar from '../components/SearchBar';

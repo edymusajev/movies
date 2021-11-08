@@ -32,7 +32,7 @@ const ALIGN_MAPS: Record<Align, string> = {
 
 const Heading = (props: Props) => {
   const { children, align, size } = props;
-  return <h2 className={classNames(`pb-4`, SIZE_MAPS[size], ALIGN_MAPS[align])}>{children}</h2>;
+  return <h2 className={classNames(SIZE_MAPS[size], ALIGN_MAPS[align])}>{children}</h2>;
 };
 
 Heading.defaultProps = {

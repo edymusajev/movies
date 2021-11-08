@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Poster from './Poster';
+import Poster from '../Poster';
 
 interface Props {
   imgHref: string;

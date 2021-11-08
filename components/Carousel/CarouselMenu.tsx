@@ -28,7 +28,7 @@ const CarouselMenu = (props: Props) => {
 
   return (
     <Popover className="w-36">
-      <Popover.Button className="button button-primary inline-flex items-center justify-center">
+      <Popover.Button className="button button-primary w-32 inline-flex items-center justify-evenly">
         {activeItem.name}
         <HiChevronDown className="text-xl" />
       </Popover.Button>

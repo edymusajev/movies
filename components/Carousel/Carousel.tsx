@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import { ContentList } from '../interfaces/Movie';
+import { ContentList } from '../../interfaces/Movie';
 import { useState } from 'react';
-
 import useSWR from 'swr';
-import { fetcher } from '../services/SWRFetcher';
-import { Heading } from './Heading';
+import { fetcher } from '../../services/SWRFetcher';
+import { Heading } from '../Heading';
 import { CarouselItem } from './CarouselItem';
 import { CarouselMenu } from './CarouselMenu';
 
@@ -14,14 +13,15 @@ export interface Category {
 }
 export interface Categories extends Array<Category> {}
 
-interface CarouselTypes {
+interface Props {
   title: string;
   categories: Categories;
   background?: boolean;
   videos?: boolean;
 }
 
-export const Carousel = ({ title, categories, background }: CarouselTypes) => {
+export const Carousel = (props: Props) => {
+  const { title, categories, background } = props;
   const [activeCategory, setActiveCategory] = useState<Category>(categories[0]);
   const { data } = useSWR(`/api/${activeCategory.api}`, fetcher);
   const [content, setContent] = useState<ContentList | null>(null);
@@ -59,8 +59,8 @@ export const Carousel = ({ title, categories, background }: CarouselTypes) => {
       {background && (
         <div className="bg-blue-900 bg-opacity-50 w-full h-full absolute inset-0 "></div>
       )}
-      <div className="flex justify-between relative z-10 container ">
-        <Heading size={Heading.size.MEDIUM}>{title}</Heading>
+      <div className="flex justify-between items-center relative z-10 container py-2">
+        <Heading size={Heading.size.LARGE}>{title}</Heading>
         <CarouselMenu
           items={categories}
           activeItem={activeCategory}
