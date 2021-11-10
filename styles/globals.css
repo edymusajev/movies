@@ -4,13 +4,13 @@
 
 @layer components {
   .container {
-    @apply px-4 md:px-8 mx-auto;
+    @apply w-full px-4 md:px-8 mx-auto max-w-screen-xl;
   }
   .button {
     @apply px-3 py-2 rounded-md font-medium;
   }
   .button-primary {
-    @apply bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white;
+    @apply bg-gray-500 hover:bg-gray-600 active:bg-gray-700 text-white;
   }
 }
 

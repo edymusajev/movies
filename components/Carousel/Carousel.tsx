@@ -59,7 +59,7 @@ export const Carousel = (props: Props) => {
       {background && (
         <div className="bg-blue-900 bg-opacity-50 w-full h-full absolute inset-0 "></div>
       )}
-      <div className="flex justify-between items-center relative z-10 container py-2">
+      <div className="flex justify-between md:gap-x-4 items-center relative z-10 container py-2 border-b">
         <Heading size={Heading.size.LARGE}>{title}</Heading>
         <CarouselMenu
           items={categories}

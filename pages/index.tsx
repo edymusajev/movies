@@ -3,6 +3,9 @@ import { Carousel, Categories } from '../components/Carousel/Carousel';
 import { Heading } from '../components/Heading';
 import { Layout } from '../components/Layout';
 import SearchBar from '../components/SearchBar';
+import { useEffect, useState } from 'react';
+import useSWR from 'swr';
+import { fetcher } from '../services/SWRFetcher';
 
 const popularCategories: Categories = [
   { name: 'Streaming', api: 'discover?category=tv&monetization=flatrate' },
@@ -26,10 +29,16 @@ const trendingCategories: Categories = [
   { name: 'This Week', api: 'trending?category=week' },
 ];
 
-const Hero = ({ bgImage }: { bgImage?: string }) => {
+const Hero = () => {
+  const { data, error } = useSWR('/api/randomBackground', fetcher);
+
   return (
-    <div className="bg-blue-800 p-4 ">
-      <div className="text-white">
+    <div className="bg-gradient-to-b from-gray-900 h-80 lg:h-96 ">
+      <div
+        className="w-full h-full relative bg-center bg-no-repeat bg-cover opacity-50 overflow-hidden"
+        style={{ backgroundImage: data && `url(${data.background})` }}
+      ></div>
+      <div className="text-white flex flex-col gap-y-4 md:gap-y-8 lg:gap-y-12  container py-4 md:py-8 max-w-screen-md relative  -top-80 lg:-top-96 z-20">
         <Heading size={Heading.size.EXTRA_LARGE}>Welcome.</Heading>
         <Heading size={Heading.size.LARGE}>
           Millions of movies, TV
