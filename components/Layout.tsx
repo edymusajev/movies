@@ -15,7 +15,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         }}
       />
       <Navbar />
-      <div className=" max-w-screen-2xl mx-auto">{children}</div>
+      <div className="mx-auto">{children}</div>
     </div>
   );
 };

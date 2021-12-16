@@ -57,7 +57,7 @@ export const Carousel = (props: Props) => {
       }
     >
       {background && (
-        <div className="bg-blue-900 bg-opacity-50 w-full h-full absolute inset-0 "></div>
+        <div className="bg-blue-900 bg-opacity-50 w-full h-full absolute inset-0"></div>
       )}
       <div className="flex justify-between md:gap-x-4 items-center relative z-10 container py-2 border-b">
         <Heading size={Heading.size.LARGE}>{title}</Heading>
@@ -67,7 +67,7 @@ export const Carousel = (props: Props) => {
           setActiveItem={setActiveCategory}
         />
       </div>
-      <div className={`flex overflow-x-auto  h-full ${background ? 'text-white' : ''}`}>
+      <div className={`flex overflow-x-auto pt-4 h-full ${background ? 'text-white' : ''}`}>
         {renderList()}
       </div>
     </div>

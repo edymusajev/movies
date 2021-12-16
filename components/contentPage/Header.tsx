@@ -9,7 +9,7 @@ interface HeaderProps {
 export const Header = ({ background, poster }: HeaderProps) => {
   return (
     <div
-      className="h-48 bg-center bg-cover p-4 mb-4 flex items-center"
+      className="bg-center bg-cover p-4 mb-4 flex items-center"
       style={{
         backgroundImage: background && `url(https://image.tmdb.org/t/p/original${background})`,
       }}

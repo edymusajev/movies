@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { Layout } from '../../components/Layout';
 import { Movie } from '../../interfaces/Movie';
-import { Content } from '../../components/content/Content';
+import { Content } from '../../components/contentPage/Content';
 
 const MoviePage = ({ data }: { data: Movie }) => {
   console.log(data);

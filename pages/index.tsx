@@ -3,9 +3,9 @@ import { Carousel, Categories } from '../components/Carousel/Carousel';
 import { Heading } from '../components/Heading';
 import { Layout } from '../components/Layout';
 import SearchBar from '../components/SearchBar';
-import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import { fetcher } from '../services/SWRFetcher';
+import { Container } from '../components/Container';
 
 const popularCategories: Categories = [
   { name: 'Streaming', api: 'discover?category=tv&monetization=flatrate' },
@@ -33,9 +33,9 @@ const Hero = () => {
   const { data, error } = useSWR('/api/randomBackground', fetcher);
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 h-80 lg:h-96 ">
+    <div className="bg-gradient-to-b from-gray-900 h-80 lg:h-96 mb-8">
       <div
-        className="w-full h-full relative bg-center bg-no-repeat bg-cover opacity-50 overflow-hidden"
+        className="w-full h-full relative bg-center bg-no-repeat bg-cover opacity-60 overflow-hidden"
         style={{ backgroundImage: data && `url(${data.background})` }}
       ></div>
       <div className="text-white flex flex-col gap-y-4 md:gap-y-8 lg:gap-y-12  container py-4 md:py-8 max-w-screen-md relative  -top-80 lg:-top-96 z-20">
@@ -65,36 +65,16 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Hero />
-      <div className="py-8">
+      <Container>
         <Carousel title="What's Popular" categories={popularCategories} />
         <Carousel title="Free to Watch" categories={freeCategories} />
         <Carousel title="Trending" categories={trendingCategories} />
         {/* Trailers API endpoint not available yet */}
         {/* <Carousel title="Latest Trailers" categories={trailerCategories} background videos /> */}
-      </div>
+      </Container>
       {/* <MoviesGrid data={data} api="movies" /> */}
     </Layout>
   );
 };
-
-// export const getServerSideProps = async () => {
-// `https://api.themoviedb.org/3/movie/popular?api_key=${
-//   process.env.MOVIES_API
-// }&language=en-US&page=${1}`;
-
-//   const data = await fetch(
-//     `https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.MOVIES_API}`
-//   ).then((res) => res.json());
-//   const filteredResults = filterResults(data.results);
-//   return {
-//     props: {
-//       data: {
-//         ...data,
-//         results: filteredResults,
-//         total_results: filteredResults.length,
-//       },
-//     },
-//   };
-// };
 
 export default Home;

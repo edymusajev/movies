@@ -1,12 +1,15 @@
 import { GetServerSideProps } from 'next';
 import { Layout } from '../../components/Layout';
 import { Series } from '../../interfaces/Movie';
-import { Content } from '../../components/content/Content';
+import { Content } from '../../components/contentPage/Content';
+import { Container } from '../../components/Container';
 
 const TvPage = ({ data }: { data: Series; bgColor: string }) => {
   return (
     <Layout>
-      <Content series={data} />
+      <Container>
+        <Content series={data} />
+      </Container>
     </Layout>
   );
 };
