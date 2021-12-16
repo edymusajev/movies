@@ -2,6 +2,7 @@ import { Cast } from '../../interfaces/Movie';
 import Image from 'next/image';
 import Poster from '../Poster';
 import { Heading } from '../Heading';
+import { Link } from '../Link';
 
 interface CastListProps {
   cast: Cast[];
@@ -14,15 +15,17 @@ interface CastCardProps {
 
 const CastCard = ({ person }: CastCardProps) => {
   return (
-    <div className="w-48 h-64 first:ml-4 border shadow-lg rounded-lg">
-      <div className="relative w-32 h-36 ">
-        <Poster src={person.profile_path} />
+    <Link href={`/person/${person.id}`}>
+      <div className="w-48 h-64 first:ml-4 border shadow-md rounded-lg hover:cursor-pointer">
+        <div className="w-36 h-36">
+          <Poster src={person.profile_path} />
+        </div>
+        <div className="p-2">
+          <p className="text-gray-900 font-semibold">{person.name}</p>
+          <p className="text-sm text-gray-600">{person.character}</p>
+        </div>
       </div>
-      <div className="p-2">
-        <p className="text-gray-900 font-semibold">{person.name}</p>
-        <p className="text-sm text-gray-600">{person.character}</p>
-      </div>
-    </div>
+    </Link>
   );
 };
 
