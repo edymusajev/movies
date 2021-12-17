@@ -15,7 +15,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         }}
       />
       <Navbar />
-      <div className="mx-auto">{children}</div>
+      <div className="container mx-auto">{children}</div>
     </div>
   );
 };
