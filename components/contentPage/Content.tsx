@@ -2,6 +2,7 @@ import { Movie, Series } from '../../interfaces/Movie';
 import { CastList } from './CastList';
 import { Description } from './Description';
 import { Header } from './Header';
+import { RelatedList } from './RelatedList';
 
 interface ContentProps {
   movie?: Movie;
@@ -33,6 +34,7 @@ export const Content = ({ movie, series }: ContentProps) => {
         </div>
 
         <CastList cast={series.credits.cast} series />
+        <RelatedList id={series.id} />
       </div>
     );
   } else if (movie) {
@@ -55,6 +57,7 @@ export const Content = ({ movie, series }: ContentProps) => {
         </div>
 
         <CastList cast={movie.credits.cast} />
+        <RelatedList id={movie.id} />
       </div>
     );
   }

@@ -1,5 +1,3 @@
-import { Menu } from '@headlessui/react';
-import SearchBar from './SearchBar';
 import { HiMenu, HiSearch } from 'react-icons/hi';
 import Link from 'next/link';
 
