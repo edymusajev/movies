@@ -8,6 +8,7 @@ interface Props {
     title?: string;
     image: string;
     poster_path: string;
+    type: 'tv' | 'movie';
   }[];
 }
 
