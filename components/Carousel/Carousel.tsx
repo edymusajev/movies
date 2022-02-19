@@ -14,7 +14,7 @@ export interface Category {
 export interface Categories extends Array<Category> {}
 
 interface Props {
-  title: string;
+  title?: string;
   categories: Categories;
   background?: boolean;
   videos?: boolean;
@@ -60,12 +60,14 @@ export const Carousel = (props: Props) => {
         <div className="bg-blue-900 bg-opacity-50 w-full h-full absolute inset-0"></div>
       )}
       <div className="flex justify-between md:gap-x-4 items-center relative z-10 container py-2 border-b">
-        <Heading size={Heading.size.LARGE}>{title}</Heading>
-        <CarouselMenu
-          items={categories}
-          activeItem={activeCategory}
-          setActiveItem={setActiveCategory}
-        />
+        {title && <Heading size={Heading.size.LARGE}>{title}</Heading>}
+        {categories && (
+          <CarouselMenu
+            items={categories}
+            activeItem={activeCategory}
+            setActiveItem={setActiveCategory}
+          />
+        )}
       </div>
       <div className={`flex overflow-x-auto pt-4 h-full ${background ? 'text-white' : ''}`}>
         {renderList()}
