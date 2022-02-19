@@ -1,9 +1,9 @@
-import { Movie } from '../interfaces/Movie';
+import { Movie, MovieList } from '../interfaces/Movie';
 import Image from 'next/image';
 import Link from 'next/link';
 import Poster from './Poster';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { MovieList } from '../interfaces/MovieList';
+
 import useResults from '../hooks/useResults';
 
 // ghost element -> <div className="lg:w-48 lg:h-72 opacity-100 hidden relative top-72"></div>;
