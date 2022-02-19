@@ -16,7 +16,7 @@ interface CastCardProps {
 const CastCard = ({ person }: CastCardProps) => {
   return (
     <Link href={`/person/${person.id}`}>
-      <div className="w-48 h-64 first:ml-4 border shadow-md rounded-lg hover:cursor-pointer">
+      <div className="w-48 h-64  border shadow-md rounded-lg hover:cursor-pointer">
         <div className="w-36 h-36">
           <Poster src={person.profile_path} />
         </div>
@@ -35,8 +35,8 @@ export const CastList = ({ cast, series }: CastListProps) => {
   };
   return (
     <>
-      <div className="container">
-        <Heading>{series ? 'Series' : 'Movies'} Cast</Heading>
+      <div className="pb-4">
+        <Heading size={Heading.size.MEDIUM}>{series ? 'Series' : 'Movies'} Cast</Heading>
       </div>
       <div className="flex overflow-x-scroll w-full space-x-4 pb-4">{renderList()}</div>
     </>
