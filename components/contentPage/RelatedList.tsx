@@ -2,6 +2,7 @@ import useSWR from 'swr';
 import { fetcher } from '../../services/SWRFetcher';
 import { Carousel } from '../Carousel/Carousel';
 import { Heading } from '../Heading';
+import { HorizontalList } from '../HorizontalList/HorizontalList';
 
 interface Props {
   id: number;
@@ -13,17 +14,17 @@ export const RelatedList = (props: Props) => {
   console.log(data);
 
   const renderList = () => {
-    return data?.map((item: any) => <div key={item.id}>{item.name}</div>);
+    return data.map((item: any) => <div key={item.id}>{item.name || item.title}</div>);
   };
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className="pb-4">
       <Heading size={Heading.size.MEDIUM}>Related</Heading>
       {renderList()}
-      {/* <Carousel /> */}
+      <HorizontalList list={data} />
     </div>
   );
 };

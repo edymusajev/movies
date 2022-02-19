@@ -18,6 +18,7 @@ interface Props {
   categories: Categories;
   background?: boolean;
   videos?: boolean;
+  data?: any;
 }
 
 export const Carousel = (props: Props) => {
