@@ -15,7 +15,7 @@ interface Props {
 export const HorizontalListItem = (props: Props) => {
   const { item } = props;
   return (
-    <Link key={item.id} href={item.type === 'tv' ? `/tv/${item.id}` : `/movies/${item.id}`}>
+    <Link key={item.id} href={item.type === 'tv' ? `/tv/${item.id}` : `/movie/${item.id}`}>
       <div className="hover:cursor-pointer hover:bg-gray-100 active:bg-gray-200 p-4 rounded-lg">
         <div className="w-36 h-56">
           <Poster src={item.poster_path} />
