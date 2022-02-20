@@ -85,3 +85,10 @@ export interface Series extends Content {
 export interface ContentList extends Array<Content> {}
 export interface MovieList extends Array<Movie> {}
 export interface SeriesList extends Array<Series> {}
+
+export interface SearchData {
+  results: MovieList | SeriesList;
+  page: number;
+  total_pages: number;
+  total_results: number;
+}

@@ -1,4 +1,4 @@
-import { Movie, MovieList } from '../interfaces/Movie';
+import { Movie, MovieList, SearchData, Series, SeriesList } from '../interfaces/Movie';
 import Image from 'next/image';
 import Link from 'next/link';
 import Poster from './Poster';
@@ -9,13 +9,22 @@ import useResults from '../hooks/useResults';
 // ghost element -> <div className="lg:w-48 lg:h-72 opacity-100 hidden relative top-72"></div>;
 // hover effects -> hover:relative hover:shadow-2xl transform hover:scale-125 duration-150
 
-const MovieCard = ({ movie }: { movie: Movie }) => {
+interface ListGridCardProps {
+  content: Movie | Series;
+}
+interface ListGridProps {
+  data: SearchData;
+  api: string;
+}
+
+const ListGridCard = (props: ListGridCardProps) => {
+  const { content } = props;
   return (
     <div className="lg:w-48 lg:h-72 group relative">
-      <Link href={`/movie/${movie.id}`} passHref>
+      <Link href={`/movie/${content.id}`} passHref>
         <div className="  z-10 hover:cursor-pointer">
           <div className="rounded-lg w-36 sm:w-44 lg:w-48 h-56 sm:h-64 lg:h-72 bg-gray-100">
-            <Poster src={movie.poster_path} />
+            <Poster src={content.poster_path} />
           </div>
         </div>
       </Link>
@@ -23,10 +32,11 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
   );
 };
 
-export const MoviesGrid = ({ data, api }: { data: MovieList; api: string }) => {
+export const ListGrid = (props: ListGridProps) => {
+  const { data, api } = props;
   const { results, fetchMoreResults, hasMore } = useResults(data, api);
   const renderList = () => {
-    return results.map((movie: Movie) => <MovieCard key={movie.id} movie={movie} />);
+    return results.map((content: any) => <ListGridCard key={content.id} content={content} />);
   };
   return (
     <InfiniteScroll

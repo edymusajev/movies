@@ -1,15 +1,22 @@
 import { Layout } from '../components/Layout';
-import { MoviesGrid } from '../components/MoviesGrid';
+import { ListGrid } from '../components/ListGrid';
 import { GetServerSideProps } from 'next';
-import { MovieList } from '../interfaces/MovieList';
-import { filterResults } from '../services/filterResults';
 
-const SearchPage = ({ data, query }: { data: MovieList; query: string }) => {
-  console.log(data.results);
+import { filterResults } from '../services/filterResults';
+import { MovieList, SeriesList } from '../interfaces/Movie';
+
+interface Props {
+  data: MovieList | SeriesList;
+  query: string;
+}
+
+const SearchPage = (props: Props) => {
+  const { data, query } = props;
+  console.log(data);
   return (
     <Layout>
       <div>
-        <MoviesGrid data={data} api={`search?query=${query}`} />
+        <ListGrid data={data} api={`search?query=${query}`} />
       </div>
     </Layout>
   );

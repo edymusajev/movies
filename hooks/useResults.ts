@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { MovieList } from '../interfaces/MovieList';
+import { SearchData } from '../interfaces/Movie';
 
-const useResults = (initialData: MovieList, api: string) => {
-  console.log('useresults: ' + initialData.results[0].title, api);
+const useResults = (initialData: SearchData, api: string) => {
   const [results, setResults] = useState(initialData.results);
   const [page, setPage] = useState(initialData.page);
   const [hasMore, setHasMore] = useState(Boolean(initialData.total_pages > page));
