@@ -3,10 +3,10 @@ import { ListGrid } from '../components/ListGrid';
 import { GetServerSideProps } from 'next';
 
 import { filterResults } from '../services/filterResults';
-import { MovieList, SeriesList } from '../interfaces/Movie';
+import { MovieList, SearchData, SeriesList } from '../interfaces/Movie';
 
 interface Props {
-  data: MovieList | SeriesList;
+  data: SearchData;
   query: string;
 }
 
