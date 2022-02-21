@@ -27,7 +27,7 @@ const DropdownMenu = (props: DropDownMenuProps) => {
   };
 
   return (
-    <Popover className="relative">
+    <Popover className="relative z-10">
       <Popover.Button ref={setReferenceElement}>{children}</Popover.Button>
       <Popover.Panel ref={setPopperElement} style={styles.popper} {...attributes.popper}>
         <div className="bg-white p-4 rounded-lg shadow border w-48">

@@ -35,7 +35,7 @@ const Hero = () => {
   return (
     <div className="bg-gradient-to-b from-gray-900 h-80 lg:h-96 mb-8">
       <div
-        className="w-full h-full relative bg-center bg-no-repeat bg-cover opacity-70 overflow-hidden"
+        className="w-full h-full relative bg-center bg-no-repeat bg-cover bg-opacity-70 overflow-hidden"
         style={{ backgroundImage: data && `url(${data.background})` }}
       ></div>
       <div className="text-white flex flex-col gap-y-4 md:gap-y-8 lg:gap-y-12  container py-4 md:py-8 max-w-screen-md relative  -top-80 lg:-top-96 z-20">
