@@ -19,15 +19,18 @@ const DropdownMenu = (props: DropDownMenuProps) => {
   let { styles, attributes } = usePopper(referenceElement, popperElement);
 
   const renderLinks = () => {
+    console.log(links);
     return links.map((link) => (
-      <Link key={link.href} href={link.href}>
-        <div className="mb-1 hover:cursor-pointer">{link.title}</div>
-      </Link>
+      <li key={link.href}>
+        <Link href={link.href}>
+          <a className="mb-1 hover:cursor-pointer">{link.title}</a>
+        </Link>
+      </li>
     ));
   };
 
   return (
-    <Popover className="relative z-10">
+    <Popover className="relative z-40">
       <Popover.Button ref={setReferenceElement}>{children}</Popover.Button>
       <Popover.Panel ref={setPopperElement} style={styles.popper} {...attributes.popper}>
         <div className="bg-white p-4 rounded-lg shadow border w-48">
@@ -42,19 +45,19 @@ const Navigation = () => {
   const movieLinks = [
     {
       title: 'Popular',
-      href: '/search/',
+      href: '/movie/popular',
     },
     {
       title: 'Now Playing',
-      href: '/search/',
+      href: '/movie/playing',
     },
     {
       title: 'Upcoming',
-      href: '/search/',
+      href: '/movie/upcoming',
     },
     {
       title: 'Top Rated',
-      href: '/search/',
+      href: '/movie/top',
     },
   ];
   const tvLinks = [
