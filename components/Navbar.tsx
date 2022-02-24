@@ -72,19 +72,19 @@ const Navigation = () => {
   const tvLinks = [
     {
       title: 'Popular',
-      href: '/search/',
+      href: '/tv/popular',
     },
     {
       title: 'Airing Today',
-      href: '/search/',
+      href: '/tv/airing',
     },
     {
       title: 'On TV',
-      href: '/search/',
+      href: '/tv/on-tv',
     },
     {
       title: 'Top Rated',
-      href: '/search/',
+      href: '/tv/top',
     },
   ];
   const peopleLinks = [{ title: 'Popular People', href: '/' }];
