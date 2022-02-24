@@ -12,7 +12,7 @@ const PopularMoviePage = (props: Props) => {
   return (
     <Layout>
       popular
-      <ListGrid data={data} api={'/popularMovies'} />
+      <ListGrid data={data} api={'/movies/popular'} />
     </Layout>
   );
 };
