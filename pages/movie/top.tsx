@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next';
+import { ContentList } from '../../components/ContentList';
 import { Layout } from '../../components/Layout';
 import { ListGrid } from '../../components/ListGrid';
 
@@ -8,11 +9,7 @@ interface Props {
 
 const TopMoviePage = (props: Props) => {
   const { data } = props;
-  return (
-    <Layout>
-      Now Playing <ListGrid data={data} api={`/movies/top`} />
-    </Layout>
-  );
+  return <ContentList title="Top Rated Movies" data={data} api={`/movies/top`} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

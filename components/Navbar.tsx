@@ -3,6 +3,7 @@ import { HiMenu, HiSearch } from 'react-icons/hi';
 import { Popover } from '@headlessui/react';
 import { usePopper } from 'react-popper';
 import { Link } from './Link';
+import { useRouter } from 'next/dist/client/router';
 
 interface DropDownMenuProps {
   children: React.ReactNode;
@@ -18,12 +19,20 @@ const DropdownMenu = (props: DropDownMenuProps) => {
   let [popperElement, setPopperElement] = useState<HTMLDivElement | null>();
   let { styles, attributes } = usePopper(referenceElement, popperElement);
 
+  const router = useRouter();
+
   const renderLinks = () => {
     console.log(links);
     return links.map((link) => (
       <li key={link.href}>
         <Link href={link.href}>
-          <a className="mb-1 hover:cursor-pointer">{link.title}</a>
+          <a
+            className={`mb-1 hover:cursor-pointer ${
+              router.pathname.includes(link.href) ? 'font-semibold' : ''
+            }`}
+          >
+            {link.title}
+          </a>
         </Link>
       </li>
     ));
