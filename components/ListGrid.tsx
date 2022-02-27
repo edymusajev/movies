@@ -5,6 +5,7 @@ import Poster from './Poster';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import useResults from '../hooks/useResults';
+import { LoadingSpinner } from './LoadingSpinner';
 
 // ghost element -> <div className="lg:w-48 lg:h-72 opacity-100 hidden relative top-72"></div>;
 // hover effects -> hover:relative hover:shadow-2xl transform hover:scale-125 duration-150
@@ -52,7 +53,7 @@ export const ListGrid = (props: ListGridProps) => {
     <InfiniteScroll
       next={fetchMoreResults}
       hasMore={hasMore}
-      loader={'loading'}
+      loader={<LoadingSpinner />}
       dataLength={results.length}
     >
       <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-8 gap-x-4 justify-items-center w-full max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg mx-auto py-16">
