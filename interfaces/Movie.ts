@@ -11,6 +11,7 @@ export interface Creator {
 }
 
 export interface Person {
+  type: string;
   adult: boolean;
   also_known_as: string[];
   biography: string;
@@ -85,6 +86,7 @@ export interface Series extends Content {
 export interface ContentList extends Array<Content> {}
 export interface MovieList extends Array<Movie> {}
 export interface SeriesList extends Array<Series> {}
+export interface PersonList extends Array<Person> {}
 
 export interface SearchData {
   results: MovieList | SeriesList;

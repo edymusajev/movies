@@ -24,10 +24,10 @@ const DropdownMenu = (props: DropDownMenuProps) => {
   const renderLinks = () => {
     console.log(links);
     return links.map((link) => (
-      <li key={link.href}>
+      <li key={link.href} className="mb-1 ">
         <Link href={link.href}>
           <a
-            className={`mb-1 hover:cursor-pointer ${
+            className={`hover:cursor-pointer ${
               router.pathname.includes(link.href) ? 'font-semibold' : ''
             }`}
           >
@@ -87,7 +87,7 @@ const Navigation = () => {
       href: '/tv/top',
     },
   ];
-  const peopleLinks = [{ title: 'Popular People', href: '/' }];
+  const peopleLinks = [{ title: 'Popular People', href: '/person/popular' }];
   return (
     <div className="hidden md:flex gap-x-8">
       <DropdownMenu links={movieLinks}>Movies</DropdownMenu>
