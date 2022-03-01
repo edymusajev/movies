@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Person } from '../../../interfaces/Movie';
+import formatFetchedList from '../../../services/formatFetchedList';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { page } = req.query;
@@ -10,13 +11,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const results = response.results.map((item: Person) => {
     return { ...item, type: 'person' };
   });
-  res
-    .status(200)
-    .json({
-      page,
-      results,
-      total_pages: response.total_pages,
-      total_results: response.total_results,
-    });
+  res.status(200).json(formatFetchedList(response, Number(page), 'person'));
 };
 export default handler;

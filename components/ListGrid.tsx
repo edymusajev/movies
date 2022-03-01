@@ -20,7 +20,6 @@ interface ListGridProps {
 
 const ListGridCard = (props: ListGridCardProps) => {
   const { content } = props;
-  console.log(content);
 
   const renderThumbnail = (content: any) => {
     if (content.poster_path) {
@@ -47,7 +46,9 @@ export const ListGrid = (props: ListGridProps) => {
   const { data, api } = props;
   const { results, fetchMoreResults, hasMore } = useResults(data, api);
   const renderList = () => {
-    return results.map((content: any) => <ListGridCard key={content.id} content={content} />);
+    return results.map((content: Movie | Series | Person) => (
+      <ListGridCard key={content.id} content={content} />
+    ));
   };
   return (
     <InfiniteScroll

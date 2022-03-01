@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { ContentList } from '../../components/ContentList';
 import { SearchData } from '../../interfaces/Movie';
+import fetchList from '../../services/formatFetchedList';
 
 interface Props {
   data: SearchData;
@@ -12,10 +13,9 @@ const PopularMoviePage = (props: Props) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const data = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.MOVIES_API}&language=en-US&page=1`
-  ).then((response) => response.json());
-
+  const page = 1;
+  const path = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.MOVIES_API}&language=en-US&page=1`;
+  const data = await fetchList(path, page, 'movie');
   return {
     props: {
       data,

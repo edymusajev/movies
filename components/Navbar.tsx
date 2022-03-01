@@ -22,9 +22,8 @@ const DropdownMenu = (props: DropDownMenuProps) => {
   const router = useRouter();
 
   const renderLinks = () => {
-    console.log(links);
     return links.map((link) => (
-      <li key={link.href} className="mb-1 ">
+      <li key={link.href} className="mb-1">
         <Link href={link.href}>
           <a
             className={`hover:cursor-pointer ${
@@ -89,7 +88,7 @@ const Navigation = () => {
   ];
   const peopleLinks = [{ title: 'Popular People', href: '/person/popular' }];
   return (
-    <div className="hidden md:flex gap-x-8">
+    <div className="flex gap-x-8">
       <DropdownMenu links={movieLinks}>Movies</DropdownMenu>
       <DropdownMenu links={tvLinks}>TV Shows</DropdownMenu>
       <DropdownMenu links={peopleLinks}>People</DropdownMenu>
@@ -102,7 +101,7 @@ export const Navbar = () => {
     <div className=" flex items-center justify-center w-full bg-gray-900 text-white">
       <header className="flex items-center justify-between w-full p-4">
         <HiMenu className="text-2xl md:hidden" />
-        <div className="md:order-2">
+        <div className="md:order-2 hidden md:block">
           <Navigation />
         </div>
         <div className="md:order-1">
