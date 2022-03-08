@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { HiMenu, HiSearch } from 'react-icons/hi';
+import React, { useState } from 'react';
+import { HiMenu, HiSearch, HiOutlineX } from 'react-icons/hi';
 import { Popover, Transition } from '@headlessui/react';
 import { usePopper } from 'react-popper';
 import { Link } from './Link';
@@ -149,7 +149,6 @@ const DropdownMenu = (props: DropDownMenuProps) => {
     </Popover>
   );
 };
-
 const Navigation = () => {
   return (
     <div className="flex gap-x-8">
@@ -160,9 +159,47 @@ const Navigation = () => {
   );
 };
 
+const Searchbar = () => {
+  const [isShowing, setIsShowing] = useState(false);
+  const [input, setInput] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    router.push(`/search?query=${input}`, undefined, { shallow: false });
+    setIsShowing(false);
+  };
+  return (
+    <div className="relative">
+      <div className="fixed top-16 left-0 w-full z-40">
+        <Transition show={isShowing}>
+          <form onSubmit={handleSubmit} className="h-12 px-5 flex items-center border-b bg-white">
+            <HiSearch className="text-xl text-black mr-2" />
+            <input
+              autoFocus
+              type="text"
+              className="h-8 w-full px-2 text-black focus:outline-none"
+              placeholder="Search"
+              onChange={(e) => setInput(e.target.value)}
+              value={input}
+            />
+            <button type="button" onClick={() => setIsShowing(false)}>
+              <HiOutlineX className="text-xl text-black ml-2 hover:cursor-pointer" />
+            </button>
+          </form>
+        </Transition>
+      </div>
+
+      <button onClick={() => setIsShowing(!isShowing)}>
+        <HiSearch className="text-2xl" />
+      </button>
+    </div>
+  );
+};
+
 export const Navbar = () => {
   return (
-    <div className=" flex items-center justify-center w-full bg-gray-900 text-white">
+    <div className=" flex items-center justify-evenly w-full bg-gray-900 text-white">
       <header className="flex items-center justify-between w-full p-4">
         <div className="md:hidden">
           <MobileMenu />
@@ -177,7 +214,9 @@ export const Navbar = () => {
           </Link>
         </div>
 
-        <HiSearch className="text-2xl md:order-3" />
+        <div className="md:order-3">
+          <Searchbar />
+        </div>
       </header>
     </div>
   );
