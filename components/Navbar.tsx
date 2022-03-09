@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HiMenu, HiSearch, HiOutlineX } from 'react-icons/hi';
 import { Popover, Transition } from '@headlessui/react';
 import { usePopper } from 'react-popper';
@@ -172,7 +172,12 @@ const Searchbar = () => {
   return (
     <div className="relative">
       <div className="fixed top-16 left-0 w-full z-40">
-        <Transition show={isShowing}>
+        <Transition
+          show={isShowing}
+          enter="transform duration-500"
+          enterFrom="-translate-y-full"
+          enterTo="translate-y-0"
+        >
           <form onSubmit={handleSubmit} className="h-12 px-5 flex items-center border-b bg-white">
             <HiSearch className="text-xl text-black mr-2" />
             <input
@@ -198,8 +203,11 @@ const Searchbar = () => {
 };
 
 export const Navbar = () => {
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+
   return (
-    <div className=" flex items-center justify-evenly w-full bg-gray-900 text-white">
+    <div className="sticky top-0 z-30 flex items-center justify-evenly w-full bg-gray-900 text-white">
       <header className="flex items-center justify-between w-full p-4">
         <div className="md:hidden">
           <MobileMenu />
