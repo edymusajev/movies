@@ -94,7 +94,7 @@ const MobileMenu = () => {
       <button onClick={() => setIsShowing(!isShowing)}>
         <HiMenu className="text-2xl" />
       </button>
-      <div className="fixed mt-4 z-50 w-4/5 h-full -ml-4 ">
+      <div className={`fixed mt-4 z-50 w-4/5 h-full -ml-4 ${isShowing ? 'visible' : 'invisible'}`}>
         <Transition
           show={isShowing}
           enter="transform  duration-300"
