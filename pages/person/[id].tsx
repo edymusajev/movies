@@ -68,34 +68,36 @@ const PersonPage = (props: Props) => {
 
   return (
     <Layout>
-      <div className="flex flex-col items-center py-8">
-        <div className="w-40 h-40 mb-8">
-          <Poster src={`${data.profile_path}`} />
-        </div>
-        <Heading size={Heading.size.LARGE}>{data.name}</Heading>
-      </div>
-
-      <div className="space-y-4 mb-4">
-        <div>
-          <Heading size={Heading.size.MEDIUM}>Personal Info</Heading>
-          <dl>
-            <Description term="Known for" details={data.known_for_department} />
-            <Description term="Gender" details={getPersonGender(data.gender)} />
-            <Description term="Birthday" details={data.birthday} />
-            <Description term="Place of birth" details={data.place_of_birth} />
-          </dl>
+      <div className="container">
+        <div className="flex flex-col items-center py-8">
+          <div className="w-40 h-40 mb-8">
+            <Poster src={`${data.profile_path}`} />
+          </div>
+          <Heading size={Heading.size.LARGE}>{data.name}</Heading>
         </div>
 
-        <div>
-          <Heading size={Heading.size.MEDIUM}>Biography</Heading>
-          <ReadMoreText
-            text={data.biography ? data.biography : `We don't have a biography for ${data.name}`}
-          />
-        </div>
+        <div className="space-y-4 mb-4">
+          <div>
+            <Heading size={Heading.size.MEDIUM}>Personal Info</Heading>
+            <dl>
+              <Description term="Known for" details={data.known_for_department} />
+              <Description term="Gender" details={getPersonGender(data.gender)} />
+              <Description term="Birthday" details={data.birthday} />
+              <Description term="Place of birth" details={data.place_of_birth} />
+            </dl>
+          </div>
 
-        <div className="space-y-2">
-          <Heading size={Heading.size.MEDIUM}>Known For</Heading>
-          <HorizontalShowList showList={casting} />
+          <div>
+            <Heading size={Heading.size.MEDIUM}>Biography</Heading>
+            <ReadMoreText
+              text={data.biography ? data.biography : `We don't have a biography for ${data.name}`}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Heading size={Heading.size.MEDIUM}>Known For</Heading>
+            <HorizontalShowList showList={casting} />
+          </div>
         </div>
       </div>
     </Layout>

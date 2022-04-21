@@ -16,8 +16,8 @@ interface CastCardProps {
 const CastCard = ({ person }: CastCardProps) => {
   return (
     <Link href={`/person/${person.id}`}>
-      <div className="w-48 h-64  border shadow-md rounded-lg hover:cursor-pointer">
-        <div className="w-36 h-36">
+      <div className="w-48 h-72 rounded-lg hover:cursor-pointer">
+        <div className="w-48 h-48">
           <Poster src={person.profile_path} />
         </div>
         <div className="p-2">

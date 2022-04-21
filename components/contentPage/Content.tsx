@@ -44,18 +44,20 @@ const MovieContent = ({ movie }: { movie: Movie }) => {
     <>
       <ContentContainer>
         <Header background={movie.backdrop_path} poster={movie.poster_path} />
-        <Description
-          type={movie.type}
-          id={movie.id}
-          title={movie.title}
-          release_date={movie.release_date}
-          user_score={movie.vote_average}
-          duration={movie.runtime}
-          genres={movie.genres}
-          tagline={movie.tagline}
-          overview={movie.overview}
-          created_by={movie.created_by}
-        />
+        <div className="md:col-span-3">
+          <Description
+            type={movie.type}
+            id={movie.id}
+            title={movie.title}
+            release_date={movie.release_date}
+            user_score={movie.vote_average}
+            duration={movie.runtime}
+            genres={movie.genres}
+            tagline={movie.tagline}
+            overview={movie.overview}
+            created_by={movie.created_by}
+          />
+        </div>
       </ContentContainer>
       <CastList cast={movie.credits.cast} />
       <RelatedList id={movie.id} />
@@ -72,5 +74,5 @@ export const Content = ({ movie, series }: ContentProps) => {
     description = <MovieContent movie={movie} />;
   }
 
-  return <div className="">{description}</div>;
+  return <div className="md:px-4 lg:px-8">{description}</div>;
 };
