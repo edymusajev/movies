@@ -92,7 +92,7 @@ const MobileMenu = () => {
   return (
     <div className="relative w-full">
       <button onClick={() => setIsShowing(!isShowing)}>
-        <HiMenu className="text-2xl" />
+        {isShowing ? <HiOutlineX className="text-2xl" /> : <HiMenu className="text-2xl" />}
       </button>
       <div className={`fixed mt-4 z-50 w-4/5 h-full -ml-4 ${isShowing ? 'visible' : 'invisible'}`}>
         <Transition
